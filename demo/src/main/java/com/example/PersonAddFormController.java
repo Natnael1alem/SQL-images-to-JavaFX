@@ -1,38 +1,27 @@
 package com.example;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class CarAddFormController {
+public class PersonAddFormController {
 
     @FXML
-    private TextField makeField;
-    @FXML
-    private TextField modelField;
-    @FXML
-    private TextField yearField;
-    @FXML
-    private TextField priceField;
+    private TextField nameField;
 
     @FXML
-    private void saveCar() {
+    private void savePerson() {
         try {
-            String make = makeField.getText();
-            String model = modelField.getText();
-            int year = Integer.parseInt(yearField.getText());
-            BigDecimal price = new BigDecimal(priceField.getText());
+            String name = nameField.getText();
 
-            Car newCar = new Car(make, model, year, price);
-            DatabaseUtil.addCar(newCar);
+            Person newP = new Person(name);
+            DatabaseUtil.addPerson(newP);
 
             switchToMainView();
         } catch (Exception e) {
-            showAlert("Error", "Failed to save car: " + e.getMessage());
+            showAlert("Error", "Failed to save person: " + e.getMessage());
         }
     }
 

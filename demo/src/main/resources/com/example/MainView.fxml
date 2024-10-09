@@ -13,19 +13,19 @@
     <children>
         <!-- Header -->
         <HBox alignment="CENTER" style="-fx-background-color: #2e3b4e; -fx-padding: 10px;">
-            <Label text="Car Inventory" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <Label text="Person List" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
         </HBox>
         
         <!-- Main Content -->
         <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
-            <TilePane fx:id="carTilePane" hgap="10" vgap="10" alignment="TOP_LEFT" style="-fx-padding: 20px;">
-                <!-- Car tiles will be added here dynamically -->
+            <TilePane fx:id="pTilePane" hgap="10" vgap="10" alignment="TOP_LEFT" style="-fx-padding: 20px;">
+                <!-- Person tiles will be added here dynamically -->
             </TilePane>
         </ScrollPane>
         
         <!-- Footer -->
         <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #2e3b4e; -fx-padding: 10px;">
-            <Button fx:id="addCarButton" text="Add Car" onAction="#switchToCarAddForm" style="-fx-font-size: 14px;" />
+            <Button text="Add Person" onAction="#switchToPersonAddForm" style="-fx-font-size: 14px;" />
         </HBox>
     </children>
 </VBox>

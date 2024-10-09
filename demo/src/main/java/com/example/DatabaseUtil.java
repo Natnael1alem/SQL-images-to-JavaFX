@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DatabaseUtil {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/car_inventory";
+    private static final String URL = "jdbc:mysql://localhost:3306/person_list";
     private static final String USER = "root";
     private static final String PASSWORD = "password";
 
@@ -14,41 +14,34 @@ public class DatabaseUtil {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public static List<Car> getAllCars() {
-        List<Car> cars = new ArrayList<>();
-        String query = "SELECT * FROM cars";
+    public static List<Person> getAllPersons() {
+        List<Person> ps = new ArrayList<>();
+        String query = "SELECT * FROM Person";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                Car car = new Car(
-                        rs.getInt("id"),
-                        rs.getString("make"),
-                        rs.getString("model"),
-                        rs.getInt("year"),
-                        rs.getBigDecimal("price")
+                Person p = new Person(
+                    rs.getString("name")
                 );
-                cars.add(car);
+                ps.add(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return cars;
+        return ps;
     }
 
-    public static void addCar(Car car) {
-        String query = "INSERT INTO cars (make, model, year, price) VALUES (?, ?, ?, ?)";
+    public static void addPerson(Person p) {
+        String query = "INSERT INTO Person (name) VALUES (?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, car.getMake());
-            pstmt.setString(2, car.getModel());
-            pstmt.setInt(3, car.getYear());
-            pstmt.setBigDecimal(4, car.getPrice());
+            pstmt.setString(1, p.getName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
